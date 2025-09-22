@@ -24,7 +24,7 @@ int main() {
     int HardCodedDateYear = 2025;
 
     // Ask the user for their date of birth
-    cout << "Enter your birth of day(day month year) :";
+    cout << "Enter your birth of day(day month year): ";
     cin >> Day >> Month >> Year;
 
     int YearsOld = HardCodedDateYear - Year;
@@ -114,17 +114,17 @@ int main() {
     if (WeekDayNumber == 6) WeekDay = "saturday";
 
     // print to the screen.
-    cout << "You are " << YearValue << " years and " << MonthValue << " months old (" << MonthsOld << " months). " << "You were born on a " << WeekDay << "." << endl;
+    cout << "You are " << YearValue << " years and " << MonthValue << " months old (" << MonthsOld << " months). " << "." << endl;
 
     // Ask for the first letter of the day.
     char FirstLetter;
     char SecondLetter = ' ';
 
-    cout << "Enter the first letter of the day you were born:";
+    cout << "Enter the first letter of the day you were born: ";
     cin >> FirstLetter;
 
     if (FirstLetter == 't') {
-        cout << "Enter a second letter:";
+        cout << "Enter a second letter: ";
         cin >> SecondLetter;
     }
 
