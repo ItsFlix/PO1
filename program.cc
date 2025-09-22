@@ -3,72 +3,82 @@ using namespace std;
 
 int main() {
 
-
     int Day, Month, Year;
     int HardCodedDateDay = 22;
     int HardCodedDateMonth = 9;
     int HardCodedDateYear = 2025;
 
-    //cout << "Enter your birth date (day month year): ";
-    //cin >> Day >> Month >> Year;
+    // Example hardcoded birthday
+    Day = 15;
+    Month = 8;
+    Year = 2006;
 
-    //cout << "Date of birth: " << Day << "/" << Month << "/" << Year << endl;
+    int YearsOld = HardCodedDateYear - Year;
+    int MonthsOld = 0;
+    int MonthValue = 0;
+    int YearValue = 0;
 
-
-    Day = 15, Month = 9, Year = 2006;
-
-    int MonthsOld{};
-    int YearsOld;
-
-    int MonthValue{};
-    int YearValue;
-
-    YearsOld = HardCodedDateYear - Year;
-
-    if (Month > HardCodedDateMonth) {
-        cout << "rrrrrrrrrrrrrrr" << endl;
-        //MonthsOld = ((YearsOld - 1) * 12) + Month;
-        MonthsOld = ((YearsOld - 1) * 12) + HardCodedDateMonth;
-        MonthValue = 12 - Month;
-        YearValue = YearsOld - 1;
+    // age restriction check
+    if (YearsOld <= 9 || YearsOld >= 101) {
+        cout << 0;
+        return 0; // stop the program here
     }
 
-    if (Month < HardCodedDateMonth) { // 8 <= 9 t
-        
-        //cout << YearsOld << endl;
 
-        MonthsOld = ((YearsOld - 1) * 12) + HardCodedDateMonth;
+    // Work out year and month difference
+    if (Month > HardCodedDateMonth || (Month == HardCodedDateMonth && Day > HardCodedDateDay)) {
+        YearsOld = YearsOld - 1;
+        MonthValue = (12 - (Month - HardCodedDateMonth));
+        YearValue = YearsOld;
+    }
+    else if (Month < HardCodedDateMonth || (Month == HardCodedDateMonth && Day <= HardCodedDateDay)) {
         MonthValue = HardCodedDateMonth - Month;
         YearValue = YearsOld;
-        //cout << MonthsOld << endl;
-
-        //cout << "You are " << YearsOld << " years old and " << HardCodedDateMonth - Month << " Months old (" << MonthsOld << " Months)";
     }
-    /*else {*/
 
-        // 9 < 9 f 9 >=
-        if (Month == HardCodedDateMonth) {
-            
-            //month = 9
-            if (Day >= HardCodedDateDay) { // 15 >= 22 f
-                MonthsOld = ((YearsOld) * 12);
-                YearValue = YearsOld;
-                MonthValue = HardCodedDateMonth;
-            }
-            else
-            {
-                MonthsOld = ((YearsOld - 1) * 12) + HardCodedDateMonth;
-                YearValue = YearsOld - 1;
-                MonthValue = HardCodedDateMonth;
-            }
-        }
+    MonthsOld = YearsOld * 12 + MonthValue;
 
+    // Weekday calculation (day counting method, no loops)
+    int DaysSince1900 = (Year - 1900) * 365;
 
-    //}
+    int LeapDaysBefore = (Year - 1) / 4 - (Year - 1) / 100 + (Year - 1) / 400;
+    int LeapDaysStart = 1899 / 4 - 1899 / 100 + 1899 / 400;
+    DaysSince1900 = DaysSince1900 + (LeapDaysBefore - LeapDaysStart);
 
-    //cout << "You are " << YearsOld << " years old and " << HardCodedDateMonth - Month << " Months old (" << MonthsOld << " Months)";
-        cout << "You are " << YearValue << " years old and " << MonthValue << " Months old (" << MonthsOld << " Months)";
+    if (Month > 1) DaysSince1900 = DaysSince1900 + 31;
+    if (Month > 2) {
+        if ((Year % 400 == 0) || (Year % 4 == 0 && Year % 100 != 0))
+            DaysSince1900 = DaysSince1900 + 29;
+        else
+            DaysSince1900 = DaysSince1900 + 28;
+    }
+    if (Month > 3) DaysSince1900 = DaysSince1900 + 31;
+    if (Month > 4) DaysSince1900 = DaysSince1900 + 30;
+    if (Month > 5) DaysSince1900 = DaysSince1900 + 31;
+    if (Month > 6) DaysSince1900 = DaysSince1900 + 30;
+    if (Month > 7) DaysSince1900 = DaysSince1900 + 31;
+    if (Month > 8) DaysSince1900 = DaysSince1900 + 31;
+    if (Month > 9) DaysSince1900 = DaysSince1900 + 30;
+    if (Month > 10) DaysSince1900 = DaysSince1900 + 31;
+    if (Month > 11) DaysSince1900 = DaysSince1900 + 30;
 
+    DaysSince1900 = DaysSince1900 + Day;
+
+    int WeekDayNumber = (1 + DaysSince1900) % 7; // 1 Jan 1900 = Monday
+
+    string WeekDay;
+    if (WeekDayNumber == 0) WeekDay = "Sunday";
+    if (WeekDayNumber == 1) WeekDay = "Monday";
+    if (WeekDayNumber == 2) WeekDay = "Tuesday";
+    if (WeekDayNumber == 3) WeekDay = "Wednesday";
+    if (WeekDayNumber == 4) WeekDay = "Thursday";
+    if (WeekDayNumber == 5) WeekDay = "Friday";
+    if (WeekDayNumber == 6) WeekDay = "Saturday";
+
+    // Single output
+    cout << "You are " << YearValue << " years and " << MonthValue
+        << " months old (" << MonthsOld << " months). "
+        << "You were born on a " << WeekDay << "." << endl;
 
     return 0;
 }
