@@ -11,7 +11,7 @@ int main() {
     int HardCodedDateYear = 2025;
 
     //Testing
-    Day = 51;
+    Day = 15;
     Month = 8;
     Year = 2006;
     //Day = 21;
