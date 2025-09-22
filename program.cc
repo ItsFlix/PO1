@@ -9,19 +9,22 @@ int main() {
     int HardCodedDateYear = 2025;
 
     // Example hardcoded birthday
-    Day = 15;
-    Month = 8;
-    Year = 2006;
+    //Day = 15;
+    //Month = 8;
+    //Year = 2006;
+    Day = 21;
+    Month = 9;
+    Year = 1925;
 
     int YearsOld = HardCodedDateYear - Year;
     int MonthsOld = 0;
     int MonthValue = 0;
     int YearValue = 0;
 
-    // age restriction check
-    if (YearsOld <= 9 || YearsOld >= 101) {
-        cout << 0;
-        return 0; // stop the program here
+    // If statement for if you are too young or too old.
+    if (HardCodedDateYear - Year < 10 || (HardCodedDateYear - Year == 10 && (Month > HardCodedDateMonth || (Month == HardCodedDateMonth && Day > HardCodedDateDay))) || HardCodedDateYear - Year > 100 || (HardCodedDateYear - Year == 100 && (Month < HardCodedDateMonth || (Month == HardCodedDateMonth && Day < HardCodedDateDay))))
+    {
+        return 1;
     }
 
 
