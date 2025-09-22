@@ -114,7 +114,7 @@ int main() {
     if (WeekDayNumber == 6) WeekDay = "saturday";
 
     // print to the screen.
-    cout << "You are " << YearValue << " years and " << MonthValue << " months old (" << MonthsOld << " months). " << "." << endl;
+    cout << "You are " << YearValue << " years and " << MonthValue << " months old (" << MonthsOld << " months)." << endl;
 
     // Ask for the first letter of the day.
     char FirstLetter;
