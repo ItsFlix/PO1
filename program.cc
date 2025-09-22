@@ -1,7 +1,9 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 int main() {
+    srand(42);
 
     int Day, Month, Year;
     int HardCodedDateDay = 22;
@@ -9,7 +11,7 @@ int main() {
     int HardCodedDateYear = 2025;
 
     //Testing
-    Day = 15;
+    Day = 51;
     Month = 8;
     Year = 2006;
     //Day = 21;
@@ -20,6 +22,12 @@ int main() {
     int MonthsOld = 0;
     int MonthValue = 0;
     int YearValue = 0;
+
+    // if statement for if the year is negative or its in the future.
+    if (Year < 0 || Year > HardCodedDateYear) {
+        cout << "You cant use this date, because its invalid." << endl;
+        return 1;
+    }
 
     // If statement for if you are too young or too old.
     if (HardCodedDateYear - Year < 10 || (HardCodedDateYear - Year == 10 && (Month > HardCodedDateMonth || (Month == HardCodedDateMonth && Day > HardCodedDateDay))) || HardCodedDateYear - Year > 100 || (HardCodedDateYear - Year == 100 && (Month < HardCodedDateMonth || (Month == HardCodedDateMonth && Day < HardCodedDateDay))))
@@ -48,14 +56,14 @@ int main() {
     int LeapDaysStart = 1899 / 4 - 1899 / 100 + 1899 / 400;
     DaysSince1900 = DaysSince1900 + (LeapDaysBefore - LeapDaysStart);
 
-    if (Month > 1) DaysSince1900 += 31;
+    if (Month > 1) DaysSince1900 = DaysSince1900 + 31;
     if (Month > 2) {
         if ((Year % 400 == 0) || (Year % 4 == 0 && Year % 100 != 0))
-            DaysSince1900 += 29;
+            DaysSince1900 = DaysSince1900 + 29;
         else
-            DaysSince1900 += 28;
+            DaysSince1900 = DaysSince1900 + 28;
     }
-    if (Month > 3) DaysSince1900 += 31;
+    if (Month > 3) DaysSince1900 = DaysSince1900 + 31;
     if (Month > 4) DaysSince1900 = DaysSince1900 + 30;
     if (Month > 5) DaysSince1900 = DaysSince1900 + 31;
     if (Month > 6) DaysSince1900 = DaysSince1900 + 30;
@@ -84,35 +92,54 @@ int main() {
 
 
     // Ask for the first letter of the day
-    char FirstLetter;
-    char SecondLetter = ' ';
+    //char FirstLetter;
+    //char SecondLetter = ' ';
 
-    cout << "Enter the first letter of the day you were born: ";
-    cin >> FirstLetter;
+    //cout << "Enter the first letter of the day you were born:";
+    //cin >> FirstLetter;
 
-    if (FirstLetter == 't') {
-        cout << "Enter the second letter:";
-        cin >> SecondLetter;
-    }
+    //if (FirstLetter == 't') {
+    //    cout << "Enter the second letter:";
+    //    cin >> SecondLetter;
+    //}
 
  
-    if (FirstLetter == WeekDay[0]) { 
-        if (WeekDay == "tuesday" && SecondLetter == 'u') {
-            cout << "That is correct." << endl;
-        }
-        else if (WeekDay == "thursday" && SecondLetter == 'h') {
-            cout << "That is correct." << endl;
-        }
-        else if (WeekDay != "tuesday" && WeekDay != "thursday") {
-            cout << "That is correct." << endl;
-        }
+    //if (FirstLetter == WeekDay[0]) { 
+    //    if (WeekDay == "tuesday" && SecondLetter == 'u') {
+    //        cout << "That is correct." << endl;
+    //    }
+    //    else if (WeekDay == "thursday" && SecondLetter == 'h') {
+    //        cout << "That is correct." << endl;
+    //    }
+    //    else if (WeekDay != "tuesday" && WeekDay != "thursday") {
+    //        cout << "That is correct." << endl;
+    //    }
 
-        else
-        {
-            return 1;
-        }
+    //    else
+    //    {
+    //        return 1;
+    //    }
+    //}
+
+
+
+    //abc formule
+    int a = rand() % 20;
+    int b = rand() % 20;
+    int c = rand() % 20;
+
+    if (a == 0) {
+        a++;
+    }
+    else if (b == 0) {
+        b++;
+    }
+    else if (c == 0) {
+        c++;
     }
 
+    // a x2 + b x + c = 0
+    cout << "equation: " << a << "x^2" << '+' << b << 'x' << '+' << c << " = 0";
 
 
 
